@@ -1,4 +1,6 @@
 # Project Name
 For no particular reason, an unbeatable tic-tac-toe game.
+# Demo
+[For example](http://www.seemann.com/luke/tictactoe)
 ## Credits
 Luke Seemann, 2016
