@@ -118,8 +118,8 @@ function Board () {
         return 4;
       }
     }
-    // If it's "O"’s turn, we want the lowest value.
-    // If it's "X"’s turn, we want the highest.
+    // If it's "X"’s turn, we want the lowest value.
+    // If it's "O"’s turn, we want the highest.
     var bestMove = null,
         openSpots = this.getOpenSpots(),
         bestValue = this.getTurn() === "X" ? 99999 : -99999;
