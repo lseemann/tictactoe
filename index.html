@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+<style>
+  body {
+    font-family: sans-serif;
+  }
+  table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  td {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 900;
+    height: 100px;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100px;
+  }
+  td:not(.taken):hover {
+    background: #f5f5f5;
+  }
+  table.game-over td:not(.taken):hover {
+    background: #fff;
+  }
+  td.taken {
+    cursor: default;
+  }
+  td.column-0, td.column-1 {
+    border-right: 1px solid #aaa;
+  }
+  td.row-0, td.row-1 {
+    border-bottom: 1px solid #aaa;
+  }
+  td.winner {
+    background: #eee;
+  }
+  td.winner-X {
+    color: green;
+  }
+  td.winner-O {
+    color: red;
+  }
+
+  button {
+    background: #999;
+    border: none;
+    color: #eee;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 300px;
+  }
+  button.active {
+    background: steelblue;
+    cursor: pointer;
+  }
+  button.active:active {
+    left: 2px;
+    top: 2px;
+  }
+  div#announcement {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    font-size: 30px;
+    font-weight: 700;
+    height: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 300px;
+  }
+  div#announcement em {
+    display: block;
+    font-size: 12px;
+    font-weight: 100;
+  }
+
+  #outer {
+    margin: 40px auto 0;
+    width: 300px;
+  }
+
+</style>
+
+
+<div id="outer">
+  <div id="announcement"></div>
+
+  <table id="ttt-table">
+    <tr>
+      <td class="row-0 column-0" id="pos-0" onclick="board.makeMove(0,'O')"></td>
+      <td class="row-0 column-1" id="pos-1" onclick="board.makeMove(1,'O')"></td>
+      <td class="row-0 column-2" id="pos-2" onclick="board.makeMove(2,'O')"></td>
+    </tr>
+    <tr>
+      <td class="row-1 column-0" id="pos-3" onclick="board.makeMove(3,'O')"></td>
+      <td class="row-1 column-1" id="pos-4" onclick="board.makeMove(4,'O')"></td>
+      <td class="row-1 column-2" id="pos-5" onclick="board.makeMove(5,'O')"></td>
+    </tr>
+    <tr>
+      <td class="row-2 column-0" id="pos-6" onclick="board.makeMove(6,'O')"></td>
+      <td class="row-2 column-1" id="pos-7" onclick="board.makeMove(7,'O')"></td>
+      <td class="row-2 column-2" id="pos-8" onclick="board.makeMove(8,'O')"></td>
+    </tr>
+  </table>
+  <button id="reset-button" onclick="board.resetBoard()">Reset board</button>
+</div>
+
+
+<script src="tictactoe.js"></script>
+
+</body>
+</html>
