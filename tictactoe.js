@@ -1,5 +1,5 @@
 function Board () {
-  // Assumptions: human is "O" and goes first, computer is "X"
+  // Assumptions: human is "X" and goes first, computer is "O"
 
   var spots = [
                 null, null, null,
