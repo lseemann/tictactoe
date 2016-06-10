@@ -223,7 +223,9 @@ function Board () {
 
   function getBestSecondMove() {
     var bestSecondMoves = [4, 0, 4, 0, 0, 8, 4, 6, 4],
-        firstMove = spots.indexOf(0);
+        firstMove;
+
+    firstMove = spots.indexOf(0) > 0 ? spots.indexOf(0) : spots.indexOf(1);
 
     return bestSecondMoves[firstMove];
   }
