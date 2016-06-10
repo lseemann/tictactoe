@@ -1,9 +1,4 @@
 function Board () {
-<<<<<<< HEAD
-=======
-  // Assumptions: human is "X" and goes first, computer is "O"
-
->>>>>>> c6a85c0f21e9755655329e7b775d38cef893512f
   var spots = [
                 null, null, null,
                 null, null, null,
