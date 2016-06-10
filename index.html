@@ -10,26 +10,35 @@
   body {
     font-family: sans-serif;
   }
+
+  #outer {
+    margin: 40px auto 0;
+    width: 300px;
+  }
+
+ /*----------  The main playing board  ----------*/
+
   table {
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    border-collapse : collapse;
+    margin-bottom   : 20px;
   }
   td {
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-    cursor: pointer;
-    font-size: 40px;
-    font-weight: 900;
-    height: 100px;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    width: 100px;
+    -moz-box-sizing : border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    cursor          : pointer;
+    font-size       : 40px;
+    font-weight     : 900;
+    height          : 100px;
+    padding         : 10px;
+    text-align      : center;
+    vertical-align  : middle;
+    width           : 100px;
   }
-  td:not(.taken):hover {
+  #ttt-table:not(.game-over) td:not(.taken):hover {
     background: #f5f5f5;
   }
   table.game-over td:not(.taken):hover {
     background: #fff;
+    cursor: default;
   }
   td.taken {
     cursor: default;
@@ -43,75 +52,123 @@
   td.winner {
     background: #eee;
   }
-  td.winner-X {
+  td.winner-0 {
     color: green;
   }
-  td.winner-O {
+  td.winner-1 {
     color: red;
   }
 
-  button {
-    background: #999;
-    border: none;
-    color: #eee;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-    padding: 10px;
+/*=====  End of main playing board  ======*/
+
+
+  input[type="radio"] {
     position: relative;
-    text-align: center;
-    width: 300px;
+    top: -10px;
   }
+
+  input[type="text"] {
+    position: relative;
+    top: -10px;
+  }
+
+  button {
+    background      : #999;
+    border          : none;
+    -moz-box-sizing : border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    color           : #eee;
+    margin-bottom   : 5px;
+    padding         : 10px;
+    position        : relative;
+    text-align      : center;
+    width           : 300px;
+  }
+
   button.active {
     background: steelblue;
     cursor: pointer;
   }
+
   button.active:active {
     left: 2px;
     top: 2px;
   }
+
   div#announcement {
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-    font-size: 30px;
-    font-weight: 700;
-    height: 80px;
-    margin-bottom: 20px;
-    text-align: center;
-    width: 300px;
+    -moz-box-sizing : border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    font-size       : 20px;
+    font-weight     : 700;
+    height          : 100px;
+    margin-bottom   : 20px;
+    text-align      : center;
+    width           : 300px;
   }
+
   div#announcement em {
-    display: block;
-    font-size: 12px;
-    font-weight: 100;
+    display     : block;
+    font-size   : 12px;
+    font-weight : 100;
   }
 
-  #outer {
-    margin: 40px auto 0;
-    width: 300px;
+  .player-choice {
+    padding: 5px;
   }
 
+  #ttt-arena {
+    display: none;
+  }
+
+  #ttt-options tr:last-child td {
+    border-top: 1px solid #aaa;
+  }
+
+  .error {
+    color: red;
+  }
 </style>
 
 
 <div id="outer">
-  <div id="announcement"></div>
-
+  <div id="announcement">Please choose from the following options for your game:</div>
+  <div id="ttt-arena">
   <table id="ttt-table">
     <tr>
-      <td class="row-0 column-0" id="pos-0" onclick="board.makeMove(0,'O')"></td>
-      <td class="row-0 column-1" id="pos-1" onclick="board.makeMove(1,'O')"></td>
-      <td class="row-0 column-2" id="pos-2" onclick="board.makeMove(2,'O')"></td>
+      <td class="row-0 column-0" id="pos-0" onclick="board.selectMove(0)"></td>
+      <td class="row-0 column-1" id="pos-1" onclick="board.selectMove(1)"></td>
+      <td class="row-0 column-2" id="pos-2" onclick="board.selectMove(2)"></td>
     </tr>
     <tr>
-      <td class="row-1 column-0" id="pos-3" onclick="board.makeMove(3,'O')"></td>
-      <td class="row-1 column-1" id="pos-4" onclick="board.makeMove(4,'O')"></td>
-      <td class="row-1 column-2" id="pos-5" onclick="board.makeMove(5,'O')"></td>
+      <td class="row-1 column-0" id="pos-3" onclick="board.selectMove(3)"></td>
+      <td class="row-1 column-1" id="pos-4" onclick="board.selectMove(4)"></td>
+      <td class="row-1 column-2" id="pos-5" onclick="board.selectMove(5)"></td>
     </tr>
     <tr>
-      <td class="row-2 column-0" id="pos-6" onclick="board.makeMove(6,'O')"></td>
-      <td class="row-2 column-1" id="pos-7" onclick="board.makeMove(7,'O')"></td>
-      <td class="row-2 column-2" id="pos-8" onclick="board.makeMove(8,'O')"></td>
+      <td class="row-2 column-0" id="pos-6" onclick="board.selectMove(6)"></td>
+      <td class="row-2 column-1" id="pos-7" onclick="board.selectMove(7)"></td>
+      <td class="row-2 column-2" id="pos-8" onclick="board.selectMove(8)"></td>
     </tr>
   </table>
-  <button id="reset-button" onclick="board.resetBoard()">Reset board</button>
+  <button id="reset-button" onclick="board.resetBoard()">Replay with these settings</button>
+  <button id="showoptions-button" class="active" onclick="board.showOptions()">Play with new settings</button>
+  </div>
+
+  <div id="ttt-options">
+  <table>
+    <tr><th>Player</th><th>Human</th><th>Computer</th><th>Symbol</th></tr>
+    <tr>
+      <td>1</td>
+      <td><input type="radio" name="p1-identity" value="human" checked="on"></td>
+      <td><input type="radio" name="p1-identity" value="computer" ></td>
+      <td><input type="text" class="player-choice" id="p1-character" maxlength="1" size="1" value="X"></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><input type="radio" name="p2-identity" value="human"></td>
+      <td><input type="radio" name="p2-identity" value="computer" checked="on"></td>
+      <td><input type="text" class="player-choice" id="p2-character" maxlength="1" size="1" value="O"></td>
+    </tr>
+  </table>
+  <button onclick="board.loadBoard()" class="active">Start game</button>
 </div>
 
 
