@@ -34,7 +34,7 @@
     width           : 100px;
   }
   #ttt-table:not(.game-over) td:not(.taken):hover {
-    background: #f5f5f5;
+    background: #333;
   }
   table.game-over td:not(.taken):hover {
     background: #fff;
@@ -154,18 +154,26 @@
 
   <div id="ttt-options">
   <table>
-    <tr><th>Player</th><th>Human</th><th>Computer</th><th>Symbol</th></tr>
+    <tr>
+      <th>Player</th>
+      <th>Human</th>
+      <th>Computer</th>
+      <th>Symbol</th>
+      <th>Goes first</th>
+    </tr>
     <tr>
       <td>1</td>
       <td><input type="radio" name="p1-identity" value="human" checked="on"></td>
       <td><input type="radio" name="p1-identity" value="computer" ></td>
       <td><input type="text" class="player-choice" id="p1-character" maxlength="1" size="1" value="X"></td>
+      <td><input type="radio" name="goes-first" id="goes-first" value="p1" checked="on"></td>
     </tr>
     <tr>
       <td>2</td>
       <td><input type="radio" name="p2-identity" value="human"></td>
       <td><input type="radio" name="p2-identity" value="computer" checked="on"></td>
       <td><input type="text" class="player-choice" id="p2-character" maxlength="1" size="1" value="O"></td>
+      <td><input type="radio" name="goes-first" id="goes-first" value="p2"></td>
     </tr>
   </table>
   <button onclick="board.loadBoard()" class="active">Start game</button>

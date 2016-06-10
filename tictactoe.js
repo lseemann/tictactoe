@@ -57,7 +57,11 @@ function Board () {
       document.getElementById('ttt-options').style.display = 'none';
       document.getElementById('ttt-arena').style.display = 'block';
 
-      this.resetBoard();
+      if (document.querySelector('input[name="goes-first"]:checked').value === 'p2') {
+        turn = 1;
+      }
+
+      this.resetBoard(turn);
     }
   }
 
@@ -260,14 +264,14 @@ function Board () {
     return newBoard;
   }
 
-  this.resetBoard = function() {
+  this.resetBoard = function(goesfirst) {
     spots = [
       null, null, null,
       null, null, null,
       null, null, null
     ];
     winner = null;
-    turn = 0;
+    turn = goesfirst || 0;
 
     this.drawBoard();
     this.startPlay();
