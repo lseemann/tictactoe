@@ -201,7 +201,6 @@ function Board () {
       return getBestSecondMove();
     }
 
-
     // If it's 0’s turn, we seek the move with the lowest value.
     // If it's 1’s turn, we seek the move with the highest.
     var bestMove  = null,
@@ -225,7 +224,7 @@ function Board () {
     var bestSecondMoves = [4, 0, 4, 0, 0, 8, 4, 6, 4],
         firstMove;
 
-    firstMove = spots.indexOf(0) > 0 ? spots.indexOf(0) : spots.indexOf(1);
+    firstMove = spots.indexOf(0) >= 0 ? spots.indexOf(0) : spots.indexOf(1);
 
     return bestSecondMoves[firstMove];
   }
