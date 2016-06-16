@@ -8,6 +8,7 @@ function Board () {
       characters = ['X', 'O'], // Can be changed by user.
       humanity = [true, false], // Is the respective player a human? Can be changed by user.
       turn = 0, // Either 0 or 1, for Player 1 and 2, respectively.
+      goesfirst = 0, // Either 0 or 1.
       winner = null; // Either null (for an unfinished game) or 0, 1, or "Draw."
 
   this.getSpots = function() {
@@ -58,10 +59,10 @@ function Board () {
       document.getElementById('ttt-arena').style.display = 'block';
 
       if (document.querySelector('input[name="goes-first"]:checked').value === 'p2') {
-        turn = 1;
+        goesfirst = 1;
       }
 
-      this.resetBoard(turn);
+      this.resetBoard();
     }
   }
 
@@ -265,14 +266,14 @@ function Board () {
     return newBoard;
   }
 
-  this.resetBoard = function(goesfirst) {
+  this.resetBoard = function() {
     spots = [
       null, null, null,
       null, null, null,
       null, null, null
     ];
     winner = null;
-    turn = goesfirst || 0;
+    turn = goesfirst;
 
     this.drawBoard();
     this.startPlay();
