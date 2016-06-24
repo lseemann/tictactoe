@@ -1,23 +1,14 @@
 function Board () {
-  var spots = [
-                null, null, null,
-                null, null, null,
-                null, null, null
-              ], // Each spot starts as null but will change to 0 or 1,
+  var size = 3,
+      spots = Array(null).fill(size * size),
+                 // Creates an array of null values, one for each spot on the board.
+                 // Each spot starts as null but will change to 0 or 1,
                  // depending on who plays there.
       characters = ['X', 'O'], // Can be changed by user.
       humanity = [true, false], // Is the respective player a human? Can be changed by user.
       turn = 0, // Either 0 or 1, for Player 1 and 2, respectively.
       goesfirst = 0, // Either 0 or 1.
       winner = null; // Either null (for an unfinished game) or 0, 1, or "Draw."
-
-  this.getSpots = function() {
-    return spots;
-  }
-
-  this.getTurn = function() {
-    return turn;
-  }
 
   this.setTurn = function(player) {
     turn = player;
@@ -29,6 +20,11 @@ function Board () {
 
   this.setOwner = function(spot, owner) {
     spots[spot] = owner;
+  }
+
+  // To load an entire board all at once, for purposes of testing
+  this.setSpots = function(spotArray) {
+    spots = spotArray;
   }
 
   function currentPlayerIsComputer() {
@@ -135,7 +131,7 @@ function Board () {
       if (spots[set[0]] == spots[set[1]] &&
           spots[set[0]] == spots[set[2]] &&
           spots[set[0]] !== null) {
-        winningSet = [set[0], set[1], set[2]]
+        winningSet = set;
       }
     })
     return winningSet;
@@ -159,7 +155,7 @@ function Board () {
   }
 
   this.makeRandomMove = function() {
-    var random_move = Math.floor(Math.random() * 8);
+    var random_move = Math.floor(Math.random() * (size * size - 1));
     this.makeMove(random_move)
   }
 
@@ -198,7 +194,7 @@ function Board () {
   this.getBestMove = function() {
     // For the sake of speed and user experience, let's return
     // a pre-determined move for the second move of the game.
-    if (this.getOpenSpots().length === 8) {
+    if (this.getOpenSpots().length === (size * size - 1)) {
       return getBestSecondMove();
     }
 
@@ -206,14 +202,14 @@ function Board () {
     // If it's 1’s turn, we seek the move with the highest.
     var bestMove  = null,
         openSpots = this.getOpenSpots(),
-        bestValue = this.getTurn() === 0 ? 99999 : -99999;
+        bestValue = turn === 0 ? 99999 : -99999;
 
     for (var i = openSpots.length - 1; i >= 0; i--) {
       var move = openSpots[i],
           moveValue = this.valueOfPlay(move)
 
-      if (this.getTurn() == 0 && moveValue < bestValue ||
-          this.getTurn() == 1 && moveValue > bestValue) {
+      if (turn == 0 && moveValue < bestValue ||
+          turn == 1 && moveValue > bestValue) {
         bestValue = moveValue;
         bestMove = move;
       }
@@ -238,7 +234,7 @@ function Board () {
         weight    = tempBoard.getOpenSpots().length + 1; // Give more weight to
                                                          // winning moves that occur earlier.
 
-    tempBoard.setOwner(move, tempBoard.getTurn())
+    tempBoard.setOwner(move, turn)
     if (tempBoard.getWinner() !== null) {
       if (tempBoard.getWinner() === 0) {
         score -= weight;
@@ -259,10 +255,10 @@ function Board () {
   // into another temporary board so it can be tested non-destructively.
   this.cloneBoard = function() {
     var newBoard = new Board();
-    for (var i = this.getSpots().length - 1; i >= 0; i--) {
-      newBoard.setOwner(i, this.getSpots()[i]);
+    for (var i = spots.length - 1; i >= 0; i--) {
+      newBoard.setOwner(i, spots[i]);
     };
-    newBoard.setTurn(this.getTurn());
+    newBoard.setTurn(turn);
     return newBoard;
   }
 
