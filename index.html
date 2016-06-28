@@ -56,10 +56,10 @@
   td.winner {
     background: #eee;
   }
-  td.winner-0 {
+  td.winner-1 {
     color: green;
   }
-  td.winner-1 {
+  td.winner-2 {
     color: red;
   }
 
@@ -154,8 +154,8 @@
       <td class="row-2 column-2" id="pos-8" onclick="board.selectMove(8)"></td>
     </tr>
   </table>
-  <button id="reset-button" onclick="board.resetBoard()">Replay with these settings</button>
-  <button id="showoptions-button" class="active" onclick="board.showOptions()">Play with new settings</button>
+  <button id="reset-button" onclick="board.startGame()">Replay with these settings</button>
+  <button id="showoptions-button" class="active" onclick="showOptions()">Play with new settings</button>
   </div>
 
   <div id="ttt-options">
