@@ -82,7 +82,7 @@ describe("Tic Tac Toe", function() {
 
   });
 
-  it("count empty spots", function() {
+  it("counts empty spots", function() {
     var board = new Board();
     board.setSpots([1,0,0,
                 0,0,0,
@@ -149,7 +149,7 @@ describe("Tic Tac Toe", function() {
                     0,0,0,
                     0,0,0]);
     move = board.getBestMove();
-    expect(move === 0 || move === 1).toBe(true);
+    expect(move === 0 || move === 2).toBe(true);
 
     board = new Board();
     board.setTurn(2);
