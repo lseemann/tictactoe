@@ -181,7 +181,7 @@ describe("Tic Tac Toe", function() {
                     0,0,1,
                     0,0,0]);
     move = board.getBestMove();
-    expect(move === 2 || move === 8).toBeTruthy();
+    expect(move === 2 || move === 8).toBe(true);
 
     board = new Board();
     board.setTurn(2);
@@ -197,7 +197,7 @@ describe("Tic Tac Toe", function() {
                     0,0,0,
                     0,1,0]);
     move = board.getBestMove();
-    expect(move === 6 || move === 8).toBeTruthy();
+    expect(move === 6 || move === 8).toBe(true);
 
     board = new Board();
     board.setTurn(2);
@@ -220,7 +220,7 @@ describe("Tic Tac Toe", function() {
                     0,0,0,
                     0,0,0]);
     move = board.getBestMove();
-    expect(move === 0 || move === 1).toBeTruthy();
+    expect(move === 0 || move === 1).toBe(true);
 
     board = new Board();
     board.setSpots([0,0,2,
@@ -234,21 +234,21 @@ describe("Tic Tac Toe", function() {
                     2,0,0,
                     0,0,0]);
     move = board.getBestMove();
-    expect(move === 0 || move === 6).toBeTruthy();
+    expect(move === 0 || move === 6).toBe(true);
 
     board = new Board();
     board.setSpots([0,0,0,
                     0,2,0,
                     0,0,0])
     move = board.getBestMove();
-    expect(move === 0 || move === 2 || move === 6 || move === 8).toBeTruthy();
+    expect(move === 0 || move === 2 || move === 6 || move === 8).toBe(true);
 
     board = new Board();
     board.setSpots([0,0,0,
                     0,0,2,
                     0,0,0]);
     move = board.getBestMove();
-    expect(move === 2 || move === 8).toBeTruthy();
+    expect(move === 2 || move === 8).toBe(true);
 
     board = new Board();
     board.setSpots([0,0,0,
@@ -262,7 +262,7 @@ describe("Tic Tac Toe", function() {
                     0,0,0,
                     0,2,0]);
     move = board.getBestMove();
-    expect(move === 6 || move === 8).toBeTruthy();
+    expect(move === 6 || move === 8).toBe(true);
 
     board = new Board();
     board.setSpots([0,0,0,
@@ -320,7 +320,7 @@ describe("Tic Tac Toe", function() {
                     2,0,2]);
     board.setTurn(2);
     move = board.getBestMove();
-    expect(move === 7 || move === 5 || move === 4).toBeTruthy();
+    expect(move === 7 || move === 5 || move === 4).toBe(true);
 
 
     // Sets up a checkmate
@@ -330,7 +330,7 @@ describe("Tic Tac Toe", function() {
                     0,0,1]);
     board.setTurn(1);
     move = board.getBestMove();
-    expect(move === 6 || move === 4).toBeTruthy();
+    expect(move === 6 || move === 4).toBe(true);
 
     board.setTurn(2)
     move = board.getBestMove();
