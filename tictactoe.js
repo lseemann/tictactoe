@@ -332,7 +332,6 @@ var tttUI = {
     if (board.currentPlayerIsComputer()) {
       // var that = this;
       // Give it a delay so we can observe things happening.
-      tttUI.displayMessage('Thinking ...');
       setTimeout(function () {
         board.makeMove(board.getBestMove());
       }, 200)
