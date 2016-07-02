@@ -26,11 +26,6 @@ function Board () {
     spots[spot] = owner;
   }
 
-  // To load an entire board all at once, for purposes of testing
-  this.setSpots = function(spotArray) {
-    spots = spotArray;
-  }
-
   function currentPlayerIsComputer() {
     return !humanity[turn];
   }
@@ -41,7 +36,7 @@ function Board () {
 
   // Returns false if game is incomplete or a draw
   this.hasWinner = function() {
-    return winner === 1 || winner === 2;
+    return winner > 0;
   }
 
   this.getWinner = function() {
@@ -50,13 +45,10 @@ function Board () {
 
   // Return an array of the spots that are still unoccupied.
   this.getOpenSpots = function() {
-    var openSpots = [];
-    for (var i = spots.length - 1; i >= 0; i--) {
-      if (spots[i] === 0) {
-        openSpots.push(i);
-      }
-    }
-    return openSpots;
+    // Create an array of all possible indices, based on size of board.
+    var openSpots = Array.apply(null, {length: (size * size)}).map(Number.call, Number)
+    // Return an array of indices whose spots are open
+    return openSpots.filter(function(spot) { return spots[spot] === 0 });
   }
 
   // Take the settings from the user and, if valid, apply them to the board.

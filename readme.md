@@ -1,5 +1,5 @@
-# Project Name
-For no particular reason, an unbeatable tic-tac-toe game.
+# Tic Tac Toe
+An unbeatable tic-tac-toe game.
 # Demo
 [For example](http://www.seemann.com/luke/tictactoe)
 ## Credits
