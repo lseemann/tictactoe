@@ -20,7 +20,7 @@
 
   table {
     border-collapse : collapse;
-    margin-bottom   : 20px;
+    margin: 0 auto 20px;
   }
   td {
     -moz-box-sizing : border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
@@ -28,13 +28,12 @@
     font-size       : 40px;
     font-weight     : 900;
     height          : 100px;
-    padding         : 10px;
+    padding         : 5px;
     text-align      : center;
     vertical-align  : middle;
     width           : 100px;
   }
   th {
-
     vertical-align: bottom;
   }
   #ttt-table:not(.game-over) td:not(.taken):hover {
@@ -47,10 +46,10 @@
   td.taken {
     cursor: default;
   }
-  td.column-0, td.column-1 {
+  td.column-0, td.column-1, td.column-2 {
     border-right: 1px solid #aaa;
   }
-  td.row-0, td.row-1 {
+  td.row-0, td.row-1, td.row-2 {
     border-bottom: 1px solid #aaa;
   }
   td.winner {
@@ -131,32 +130,36 @@
   .error {
     color: red;
   }
-
-  p.bonus {
-    margin-top: 40px;
-    text-align: center;
-  }
 </style>
 
 
 <div id="outer">
-  <div id="announcement">Please choose from the following options for your game:</div>
+  <div id="announcement">Please choose from the following options for your game: <em>Note that playing computer requires evaluating more than billions of potential moves, making it impossible to execute in a browser, but human-vs-human is offered to show proof of concept.</em></div>
   <div id="ttt-arena">
   <table id="ttt-table">
     <tr>
       <td class="row-0 column-0" id="pos-0" onclick="tttUI.selectMove(0)"></td>
       <td class="row-0 column-1" id="pos-1" onclick="tttUI.selectMove(1)"></td>
       <td class="row-0 column-2" id="pos-2" onclick="tttUI.selectMove(2)"></td>
+      <td class="row-0 column-3" id="pos-3" onclick="tttUI.selectMove(3)"></td>
     </tr>
     <tr>
-      <td class="row-1 column-0" id="pos-3" onclick="tttUI.selectMove(3)"></td>
-      <td class="row-1 column-1" id="pos-4" onclick="tttUI.selectMove(4)"></td>
-      <td class="row-1 column-2" id="pos-5" onclick="tttUI.selectMove(5)"></td>
+      <td class="row-1 column-0" id="pos-4" onclick="tttUI.selectMove(4)"></td>
+      <td class="row-1 column-1" id="pos-5" onclick="tttUI.selectMove(5)"></td>
+      <td class="row-1 column-2" id="pos-6" onclick="tttUI.selectMove(6)"></td>
+      <td class="row-1 column-3" id="pos-7" onclick="tttUI.selectMove(7)"></td>
     </tr>
     <tr>
-      <td class="row-2 column-0" id="pos-6" onclick="tttUI.selectMove(6)"></td>
-      <td class="row-2 column-1" id="pos-7" onclick="tttUI.selectMove(7)"></td>
-      <td class="row-2 column-2" id="pos-8" onclick="tttUI.selectMove(8)"></td>
+      <td class="row-2 column-0" id="pos-8"  onclick="tttUI.selectMove(8)"></td>
+      <td class="row-2 column-1" id="pos-9"  onclick="tttUI.selectMove(9)"></td>
+      <td class="row-2 column-2" id="pos-10" onclick="tttUI.selectMove(10)"></td>
+      <td class="row-2 column-3" id="pos-11" onclick="tttUI.selectMove(11)"></td>
+    </tr>
+    <tr>
+      <td class="row-3 column-0" id="pos-12" onclick="tttUI.selectMove(12)"></td>
+      <td class="row-3 column-1" id="pos-13" onclick="tttUI.selectMove(13)"></td>
+      <td class="row-3 column-2" id="pos-14" onclick="tttUI.selectMove(14)"></td>
+      <td class="row-3 column-3" id="pos-15" onclick="tttUI.selectMove(15)"></td>
     </tr>
   </table>
   <button id="reset-button" onclick="board.startGame()">Replay with these settings</button>
@@ -168,37 +171,33 @@
     <tr>
       <th>Player</th>
       <th>Human</th>
-      <th>Computer</th>
+      <!-- <th>Computer</th> -->
       <th>Symbol</th>
       <th>Goes first</th>
     </tr>
     <tr>
       <td>1</td>
       <td><input type="radio" name="p1-identity" value="human" checked="on"></td>
-      <td><input type="radio" name="p1-identity" value="computer" ></td>
+      <!-- <td><input type="radio" name="p1-identity" value="computer" ></td> -->
       <td><input type="text" class="player-choice" id="p1-character" maxlength="1" size="1" value="X"></td>
       <td><input type="radio" name="goes-first" id="goes-first" value="p1" checked="on"></td>
     </tr>
     <tr>
       <td>2</td>
-      <td><input type="radio" name="p2-identity" value="human"></td>
-      <td><input type="radio" name="p2-identity" value="computer" checked="on"></td>
+      <td><input type="radio" name="p2-identity" value="human" checked="on"></td>
+      <!-- <td><input type="radio" name="p2-identity" value="computer" ></td> -->
       <td><input type="text" class="player-choice" id="p2-character" maxlength="1" size="1" value="O"></td>
       <td><input type="radio" name="goes-first" id="goes-first" value="p2"></td>
     </tr>
   </table>
   <button onclick="tttUI.loadBoard()" class="active">Start game</button>
-
-  <p class="bonus"><strong>Bonus:</strong> <a href="fourxfour.html">Play a 4x4 board</a></p>
 </div>
 
 
 <script src="tictactoe.js"></script>
 <script>
-  var board = new Board(3);
+  var board = new Board(4);
 </script>
-
-
 
 </body>
 </html>
