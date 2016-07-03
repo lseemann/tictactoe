@@ -130,7 +130,7 @@ function Board (size) {
     // If it's 1’s turn, we seek the move with the highest.
     var bestMove,
         openSpots = this.getOpenSpots(),
-        bestValue = turn === 1 ? 99999 : -99999;
+        bestValue = turn === 1 ? 99999999 : -99999999;
 
     for (var i = openSpots.length - 1; i >= 0; i--) {
       var move = openSpots[i],
@@ -200,16 +200,16 @@ function Board (size) {
   // depending on its size.
   this.getWinningSets = function() {
 
-    return getRows(size).concat(getCols(size)).concat(getDiags(size))
+    return getRows(size).concat(getCols(size)).concat(getDiags(size));
 
     function getRows(size) {
       var rows = [];
       for (var i = 0; i < size; i++) {
-        row = []
+        var row = [];
         for (var j = 0; j < size; j++) {
-          row.push(j + i * size)
+          row.push(j + i * size);
         };
-        rows.push(row)
+        rows.push(row);
       };
       return rows;
     }
@@ -217,21 +217,21 @@ function Board (size) {
     function getCols(size) {
       var cols = [];
       for (var i = 0; i < size; i++) {
-        col = []
+        var col = []
         for (var j = 0; j < size; j++) {
-          col.push(j * size + i)
+          col.push(j * size + i);
         };
-        cols.push(col)
+        cols.push(col);
       };
       return cols;
     }
 
     function getDiags(size) {
       var diag1 = [],
-          diag2 = []
+          diag2 = [];
       for (var i = 0; i < size; i++) {
-        diag1.push(i + i * size)
-        diag2.push(size - 1 + (i * (size - 1)))
+        diag1.push(i * (size + 1));
+        diag2.push((i + 1) * (size - 1));
       }
       return [diag1, diag2]
     }
